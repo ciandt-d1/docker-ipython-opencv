@@ -1,7 +1,7 @@
 ---
 
 ipythonnotebook:
-  image: trafferty/jupyter-opencv
+  image: deeone/jupyter-opencv
   ports:
    - "80:8888"
   environment:

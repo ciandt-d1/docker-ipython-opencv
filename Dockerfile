@@ -7,7 +7,7 @@ MAINTAINER Tom Rafferty <traff.td@gmail.com>
 #
 # Image based on jupyter/scipy-notebook
 #
-#   added OpenCV 3.1.0 (built)
+#   added OpenCV 3.2.0 (built)
 #   plus prerequisites...
 #######################################
 
@@ -62,8 +62,8 @@ RUN apt-get update -qq && apt-get install -y --force-yes \
 # Build OpenCV 3.x
 # =================================
 WORKDIR /usr/local/src
-RUN git clone --branch 3.1.0 --depth 1 https://github.com/Itseez/opencv.git
-RUN git clone --branch 3.1.0 --depth 1 https://github.com/Itseez/opencv_contrib.git
+RUN git clone --branch 3.2.0 --depth 1 https://github.com/Itseez/opencv.git
+RUN git clone --branch 3.2.0 --depth 1 https://github.com/Itseez/opencv_contrib.git
 RUN mkdir -p opencv/release
 WORKDIR /usr/local/src/opencv/release
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -71,7 +71,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
           -D WITH_TBB=ON \
           -D BUILD_PYTHON_SUPPORT=ON \
           -D WITH_V4L=ON \
-#          -D INSTALL_C_EXAMPLES=ON \     bug w/ tag=3.1.0: cmake has error
+#          -D INSTALL_C_EXAMPLES=ON \     bug w/ tag=3.2.0: cmake has error
           -D INSTALL_PYTHON_EXAMPLES=ON \
           -D BUILD_EXAMPLES=ON \
           -D BUILD_DOCS=ON \
