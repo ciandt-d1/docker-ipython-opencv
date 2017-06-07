@@ -110,8 +110,8 @@ RUN /opt/conda/bin/pip install imutils
 ## Post install mods:
 
 # Bug in Anaconda distribution causes `GLIBC_2.15' not found error. Here is workaround:
-RUN [ -e /opt/conda/lib/libm.so ] && mv /opt/conda/lib/libm.so /opt/conda/lib/libmXXX.so
-RUN [ -e /opt/conda/lib/libm.so.6 ] && mv /opt/conda/lib/libm.so.6 /opt/conda/lib/libm.so.6XXX
+RUN [ -e /opt/conda/lib/libm.so ] && mv /opt/conda/lib/libm.so /opt/conda/lib/libmXXX.so || exit 0
+RUN [ -e /opt/conda/lib/libm.so.6 ] && mv /opt/conda/lib/libm.so.6 /opt/conda/lib/libm.so.6XXX || exit 0
 
 ## Switch back to jupyter user (for now)
 USER jovyan
