@@ -90,11 +90,11 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
           -D PYTHON2_NUMPY_INCLUDE_DIRS=/opt/conda/envs/python2/lib/python2.7/site-packages/numpy/core/include/ \
           -D BUILD_opencv_python3=ON \
           -D PYTHON3_EXECUTABLE=/opt/conda/bin/python \
-          -D PYTHON3_INCLUDE_DIR=/opt/conda/include/python3.4m/ \
+          -D PYTHON3_INCLUDE_DIR=/opt/conda/include/python3.5m/ \
           -D PYTHON3_LIBRARY=/opt/conda/lib/libpython3.so \
           -D PYTHON_LIBRARY=/opt/conda/lib/libpython3.so \
-          -D PYTHON3_PACKAGES_PATH=/opt/conda/lib/python3.4/site-packages \
-          -D PYTHON3_NUMPY_INCLUDE_DIRS=/opt/conda/lib/python3.4/site-packages/numpy/core/include/ \
+          -D PYTHON3_PACKAGES_PATH=/opt/conda/lib/python3.5/site-packages \
+          -D PYTHON3_NUMPY_INCLUDE_DIRS=/opt/conda/lib/python3.5/site-packages/numpy/core/include/ \
           ..
 RUN make -j4
 RUN make install
