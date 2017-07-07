@@ -61,9 +61,10 @@ RUN apt-get update -qq && apt-get install -y --force-yes \
 
 # Build OpenCV 3.x
 # =================================
+
 WORKDIR /usr/local/src
-RUN git clone --branch 3.2.0 --depth 1 https://github.com/Itseez/opencv.git
-RUN git clone --branch 3.2.0 --depth 1 https://github.com/Itseez/opencv_contrib.git
+RUN git clone --branch 3.3.0-rc --depth 1 https://github.com/Itseez/opencv.git
+RUN git clone --branch 3.3.0-rc --depth 1 https://github.com/Itseez/opencv_contrib.git
 RUN mkdir -p opencv/release
 WORKDIR /usr/local/src/opencv/release
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -102,16 +103,32 @@ RUN sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
 RUN ldconfig
 #
 ## Additional python modules
-RUN /opt/conda/envs/python2/bin/pip install imutils
-RUN /opt/conda/bin/pip install imutils
+RUN /opt/conda/envs/python2/bin/pip install imutils imgaug selectivesearch
+RUN /opt/conda/bin/pip install imutils imgaug selectivesearch
 
 ## =================================
 
 ## Post install mods:
-
 # Bug in Anaconda distribution causes `GLIBC_2.15' not found error. Here is workaround:
 RUN [ -e /opt/conda/lib/libm.so ] && mv /opt/conda/lib/libm.so /opt/conda/lib/libmXXX.so || exit 0
 RUN [ -e /opt/conda/lib/libm.so.6 ] && mv /opt/conda/lib/libm.so.6 /opt/conda/lib/libm.so.6XXX || exit 0
+
+WORKDIR /usr/local/src
+
+## Install Boost
+# RUN wget https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.bz2 \
+#     && tar --bzip2 -xf boost_1_64_0.tar.bz2 \
+
+## Install selective search
+## https://github.com/belltailjp/selective_search_py
+
+# RUN git clone https://github.com/belltailjp/selective_search_py.git \
+#     && cd selective_search_py \
+#     && wget http://cs.brown.edu/~pff/segment/segment.zip \
+#     && unzip segment.zip \
+#     && rm segment.zip \
+#     && cmake . \
+#     && make
 
 ## Switch back to jupyter user (for now)
 USER jovyan
