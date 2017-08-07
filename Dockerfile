@@ -42,7 +42,7 @@ RUN apt-get update -qq && apt-get install -y --force-yes \
     libtheora-dev \
     libxml2-dev \
     libxslt1-dev \
-    libgeos-dev \
+    libgeos-dev; \
     apt-get clean
 
 # Build OpenCV 3.x
