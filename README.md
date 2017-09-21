@@ -1,9 +1,10 @@
 # jupyter-opencv
-Jupyter/scipy server with OpenCV ver 3.x.  Based on [Jupyter Project](http://jupyter.org/index.html)
+Jupyter/scipy server with OpenCV ver 3.3.0.  Based on [Jupyter Project](http://jupyter.org/index.html)
 
-Based off of [jupyter/scipy-notebook](https://hub.docker.com/r/jupyter/scipy-notebook/) docker image, this dockerfile adds the latest (from github source) OpenCV (currently 3.x) on top of the jupyter/scipy-notebook stack.
+Based off of [jupyter/scipy-notebook](https://hub.docker.com/r/jupyter/scipy-notebook/) docker image, this dockerfile adds the latest (from github source) OpenCV (currently 3.3.0) on top of the jupyter/scipy-notebook stack.
 ### Base Docker Image
 jupyter/scipy-notebook
+
 ### Usage
 ##### (Assumes that docker has been installed.  If not, start [here](https://docs.docker.com/installation/#installation).)
 Pull it:

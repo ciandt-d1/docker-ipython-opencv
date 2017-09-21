@@ -1,13 +1,4 @@
-
 FROM jupyter/scipy-notebook
-
-########################################
-#
-# Image based on jupyter/scipy-notebook
-#
-#   added OpenCV 3.3.0-rc (built)
-#   plus prerequisites...
-#######################################
 
 USER root
 
@@ -45,12 +36,12 @@ RUN apt-get update -qq && apt-get install -y --force-yes \
     libgeos-dev; \
     apt-get clean
 
-# Build OpenCV 3.x
+# Build OpenCV 3.3.0
 # =================================
 
 WORKDIR /usr/local/src
-RUN git clone --branch 3.3.0-rc --depth 1 https://github.com/Itseez/opencv.git
-RUN git clone --branch 3.3.0-rc --depth 1 https://github.com/Itseez/opencv_contrib.git
+RUN git clone --branch 3.3.0 --depth 1 https://github.com/opencv/opencv.git
+RUN git clone --branch 3.3.0 --depth 1 https://github.com/opencv/opencv_contrib.git
 RUN mkdir -p opencv/release
 WORKDIR /usr/local/src/opencv/release
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
@@ -90,8 +81,8 @@ RUN sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
 RUN ldconfig
 #
 ## Additional python modules
-RUN /opt/conda/envs/python2/bin/pip install imutils imgaug selectivesearch shapely
-RUN /opt/conda/bin/pip install imutils imgaug selectivesearch shapely
+RUN /opt/conda/envs/python2/bin/pip install imutils imgaug shapely
+RUN /opt/conda/bin/pip install imutils imgaug shapely
 
 ## =================================
 
