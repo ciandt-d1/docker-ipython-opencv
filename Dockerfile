@@ -79,7 +79,7 @@ RUN make -j4
 RUN make install
 RUN sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
 RUN ldconfig
-#
+
 ## Additional python modules
 RUN /opt/conda/envs/python2/bin/pip install imutils imgaug shapely
 RUN /opt/conda/bin/pip install imutils imgaug shapely
@@ -90,8 +90,6 @@ RUN /opt/conda/bin/pip install imutils imgaug shapely
 # Bug in Anaconda distribution causes `GLIBC_2.15' not found error. Here is workaround:
 RUN [ -e /opt/conda/lib/libm.so ] && mv /opt/conda/lib/libm.so /opt/conda/lib/libmXXX.so || exit 0
 RUN [ -e /opt/conda/lib/libm.so.6 ] && mv /opt/conda/lib/libm.so.6 /opt/conda/lib/libm.so.6XXX || exit 0
-
-WORKDIR /usr/local/src
 
 ## Switch back to jupyter user (for now)
 USER jovyan
